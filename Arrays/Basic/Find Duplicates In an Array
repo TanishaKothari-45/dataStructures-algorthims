@@ -1,0 +1,48 @@
+**********//// Finding Duplicates in an Array by putting all the elements in the hashmap and then traversing through map keySet ..if key is greater than 1 means element
+
+occurs multiple times thus adding it to the list..and further can sort the list in ascending order if desired...//***********
+
+
+
+
+class Solution {
+    public static ArrayList<Integer> duplicates(int arr[], int n) {
+        // code here
+       
+
+        HashMap<Integer,Integer> map=new HashMap<>();
+        
+        ArrayList<Integer> list= new ArrayList<>();
+        
+        boolean flag=false;
+        
+        for(int i=0;i<n;i++)
+        {
+            if(map.containsKey(arr[i]))
+            {
+               map.put(arr[i],map.get(arr[i])+1); 
+            }
+            else
+            {
+                map.put(arr[i],1);
+            }
+        }
+        for( int k :map.keySet())
+        {
+            if(map.get(k)>1)
+            {
+                list.add(k);
+                flag=true;
+            }
+        }
+        if(flag==false)
+        {
+            list.add(-1);
+        }
+      
+        Collections.sort(list);
+        return list;
+        
+    }
+}
+    
